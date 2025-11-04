@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ProjectManagementSystemApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProjectManagementSystemApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(ProjectManagementSystemApplication.class, args);
+    }
 }
