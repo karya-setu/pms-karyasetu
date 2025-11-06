@@ -1,4 +1,4 @@
-package com.gfss.pms.Repo;
+package com.gfss.pms.Repository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import com.gfss.pms.Entity.PMSUser;
@@ -6,5 +6,4 @@ import com.gfss.pms.Entity.PMSUser;
 
 
 public interface PMSUserRepo extends MongoRepository<PMSUser,String> {
-    boolean existsByEmail(String email);
 }
