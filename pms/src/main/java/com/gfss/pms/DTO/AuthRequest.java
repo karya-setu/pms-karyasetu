@@ -8,9 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class AuthRequest {
-    private String firstName;
-    private String lastName;
     private String email;
-    private String phone;
     private String password;
 }
