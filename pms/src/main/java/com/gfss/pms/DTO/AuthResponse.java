@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthResponse {
+    private String userId;
     private String message; //Example: "User registered succesfully"
     private String token; //JWT Token after login
 }
