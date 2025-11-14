@@ -1,48 +1,18 @@
 package com.gfss.pms.Service;
 
-import com.gfss.pms.DTO.TaskRequest;
 import com.gfss.pms.Entity.PMSTask;
-import com.gfss.pms.Repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
 import java.util.List;
-import java.util.Optional;
 
-@Service
-public class TaskService {
+public interface TaskService {
 
-    @Autowired
-    private TaskRepository taskRepository;
+    PMSTask createTask(PMSTask task);
 
-    // Create Task
-    public PMSTask createTask(TaskRequest request) {
-        PMSTask task = PMSTask.builder()
-                .name(request.getName())
-                .build();
-        return taskRepository.save(task);
-    }
+    PMSTask updateTask(String taskId, PMSTask task);
 
-    // Get all tasks
-    public List<PMSTask> getAllTasks() {
-        return taskRepository.findAll();
-    }
+    PMSTask getTaskById(String id);
 
-    // Get task by ID
-    public Optional<PMSTask> getTaskById(String id) {
-        return taskRepository.findById(id);
-    }
+    List<PMSTask> getAllTasks();
 
-    // Update task
-    public PMSTask updateTask(String id, TaskRequest request) {
-        PMSTask existingTask = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
-
-        if (request.getName() != null) existingTask.setName(request.getName());
-        return taskRepository.save(existingTask);
-    }
-
-    // Delete task
-    public void deleteTask(String id) {
-        taskRepository.deleteById(id);
-    }
+    void deleteTask(String id);
 }

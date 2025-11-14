@@ -22,8 +22,6 @@ public class PMSTask {
     private String description;
     private String status;
     private String projectId;
-
-    // Optional tracking fields
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

@@ -1,6 +1,5 @@
 package com.gfss.pms.Controller;
 
-import com.gfss.pms.DTO.TaskRequest;
 import com.gfss.pms.Entity.PMSTask;
 import com.gfss.pms.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,43 +9,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/tasks")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/task")
 public class TaskController {
 
     @Autowired
-    private TaskService taskService;
+    private TaskService service;
 
-    // Create Task
-    @PostMapping
-    public ResponseEntity<PMSTask> createTask(@RequestBody TaskRequest request) {
-        return ResponseEntity.ok(taskService.createTask(request));
+    // CREATE
+    @PostMapping("/create")
+    public ResponseEntity<PMSTask> createTask(@RequestBody PMSTask task) {
+        return ResponseEntity.ok(service.createTask(task));
     }
 
-    // Get all tasks
-    @GetMapping
+    // READ ALL
+    @GetMapping("/all")
     public ResponseEntity<List<PMSTask>> getAllTasks() {
-        return ResponseEntity.ok(taskService.getAllTasks());
+        return ResponseEntity.ok(service.getAllTasks());
     }
 
-    // Get task by ID
+    // READ BY ID
     @GetMapping("/{id}")
     public ResponseEntity<PMSTask> getTaskById(@PathVariable String id) {
-        return taskService.getTaskById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(service.getTaskById(id));
     }
 
-    // Update task
-    @PutMapping("/{id}")
-    public ResponseEntity<PMSTask> updateTask(@PathVariable String id, @RequestBody TaskRequest request) {
-        return ResponseEntity.ok(taskService.updateTask(id, request));
+    // UPDATE
+    @PutMapping("/update/{id}")
+    public ResponseEntity<PMSTask> updateTask(@PathVariable String id, @RequestBody PMSTask task) {
+        return ResponseEntity.ok(service.updateTask(id, task));
     }
 
-    // Delete task
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable String id) {
-        taskService.deleteTask(id);
-        return ResponseEntity.noContent().build();
+    // DELETE
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteTask(@PathVariable String id) {
+        service.deleteTask(id);
+        return ResponseEntity.ok("Task deleted successfully");
     }
 }
