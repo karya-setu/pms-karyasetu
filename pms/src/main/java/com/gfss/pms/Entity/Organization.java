@@ -5,22 +5,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import java.time.LocalDateTime;
 
-@Document(collection = "Projects")
+
+@Document(collection = "pms_organizations")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PMSProject {
+public class Organization {
+
 
     @Id
     private String id;
 
     private String name;
-    private String description;
-    private String status;  // e.g., "Active", "Completed", "On Hold"
-    private String startDate;
-    private String endDate;
+    private String email;
+    private String contactNumber;
+    private String address;
 
+    private String adminUserId; // reference to Admin
 
+    private boolean active = true;
+
+    // getters & setters
 }
