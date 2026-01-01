@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gfss.pms.Entity.Project;
+import com.gfss.pms.Entity.PMSProject;
 import com.gfss.pms.Service.ProjectService;
 
 
@@ -31,25 +31,25 @@ public class ProjectController {
 //api
     // CREATE
     @PostMapping
-    public ResponseEntity<Project> createProject(@RequestBody Project project) {
+    public ResponseEntity<PMSProject> createProject(@RequestBody PMSProject project) {
         return ResponseEntity.ok(projectService.createProject(project));
     }
 
     // READ ALL
     @GetMapping
-    public ResponseEntity<List<Project>> getAllProjects() {
+    public ResponseEntity<List<PMSProject>> getAllProjects() {
         return ResponseEntity.ok(projectService.getAllProjects());
     }
 
     // READ ONE
     @GetMapping("/{id}")
-    public ResponseEntity<Project> getProjectById(@PathVariable String id) {
+    public ResponseEntity<PMSProject> getProjectById(@PathVariable String id) {
         return ResponseEntity.ok(projectService.getProjectById(id));
     }
 
     // UPDATE
     @PutMapping("/{id}")
-    public ResponseEntity<Project> updateProject(@PathVariable String id, @RequestBody Project project) {
+    public ResponseEntity<PMSProject> updateProject(@PathVariable String id, @RequestBody PMSProject project) {
         return ResponseEntity.ok(projectService.updateProject(id, project));
     }
 

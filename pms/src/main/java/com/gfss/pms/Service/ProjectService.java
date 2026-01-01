@@ -1,11 +1,9 @@
 package com.gfss.pms.Service;
 
-import com.gfss.pms.Entity.Project;
+import com.gfss.pms.Entity.PMSProject;
 import com.gfss.pms.Repository.ProjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProjectService {
@@ -17,24 +15,24 @@ public class ProjectService {
     }
 
     // CREATE
-    public Project createProject(Project project) {
+    public PMSProject createProject(PMSProject project) {
         return projectRepository.save(project);
     }
 
     // READ ALL
-    public List<Project> getAllProjects() {
+    public List<PMSProject> getAllProjects() {
         return projectRepository.findAll();
     }
 
     // READ ONE
-    public Project getProjectById(String id) {
+    public PMSProject getProjectById(String id) {
         return projectRepository.findById(id)
                 .orElseThrow();
     }
 
     // UPDATE
-    public Project updateProject(String id, Project updatedProject) {
-        Project existingProject = getProjectById(id);
+    public PMSProject updateProject(String id, PMSProject updatedProject) {
+        PMSProject existingProject = getProjectById(id);
         existingProject.setName(updatedProject.getName());
         existingProject.setDescription(updatedProject.getDescription());
         existingProject.setStatus(updatedProject.getStatus());
@@ -45,7 +43,7 @@ public class ProjectService {
 
     // DELETE
     public void deleteProject(String id) {
-        Project project = getProjectById(id);
+        PMSProject project = getProjectById(id);
         projectRepository.delete(project);
     }
 }

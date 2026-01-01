@@ -1,12 +1,7 @@
 package com.gfss.pms.Entity;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -17,22 +12,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class PMSUser {
+
     @Id
     private String userId;
+
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
     private String password;
-    private LocalDate dateJoined;
-    private String status;
 
-//    @DBRef
-//    private Role role;
-//
-//    @DBRef
-//    private Department department;
-//
-//    @DBRef
-//    private Project project;
+    @Builder.Default
+    private LocalDate dateJoined = LocalDate.now();
+
+    @Builder.Default
+    private String status = "ACTIVE";
 }
